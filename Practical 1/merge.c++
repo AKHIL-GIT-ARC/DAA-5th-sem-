@@ -88,3 +88,14 @@ int main()
 
     return 0;
 }
+
+// Output for merge sort:
+// Enter the number of elements: 6
+// Enter the elements:
+// 30
+// 26
+// 38
+// 27
+// 99
+// 74
+// Sorted array: 26 27 30 38 74 99 

@@ -42,3 +42,12 @@ int main()
 
     return 0;
 }
+
+// Output for insertion sort:
+// Enter the number of elements: 4
+// Enter the elements:
+// 24
+// 66
+// 34
+// 11
+// Sorted array: 11 24 34 66 

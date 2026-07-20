@@ -49,3 +49,13 @@ int main()
 
     return 0;
 }
+
+// Output for quick sort:
+// Enter the number of elements: 5
+// Enter the elements:
+// 84
+// 47
+// 91
+// 62
+// 95
+// Sorted array: 47 62 84 91 95 

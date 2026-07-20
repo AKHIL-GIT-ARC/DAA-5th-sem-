@@ -38,3 +38,12 @@ int main()
 
     return 0;
 }
+
+// Output for selection sort:
+// Enter the number of elements: 4
+// Enter the elements:
+// 83
+// 67 
+// 80
+// 13
+// Sorted array: 13 67 80 83 

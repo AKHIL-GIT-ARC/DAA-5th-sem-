@@ -34,3 +34,13 @@ int main()
 
     return 0;
 }
+
+// Output for bubble sort:
+// Enter size: 5
+// Enter elements:
+// 43
+// 23
+// 76
+// 10
+// 29
+// Sorted Array: 10 23 29 43 76
