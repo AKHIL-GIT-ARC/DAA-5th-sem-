@@ -1,3 +1,5 @@
+// Implementation and Time analysis of sorting algorithms. Bubble 
+// sort, Selection sort, Insertion sort, Merge sort and Quicksort.
 #include <iostream>
 using namespace std;
 
@@ -131,7 +133,7 @@ int main() {
     cout << "Enter elements: ";
     for (int i = 0; i < n; i++)
         cin >> a[i];
-    cout << "\nChoose Operation";
+    cout << "\nChoose Operation:";
     cout << "\n1. Bubble Sort";
     cout << "\n2. Selection Sort";
     cout << "\n3. Insertion Sort";
@@ -171,6 +173,7 @@ int main() {
 Enter number of elements: 5
 Enter elements: 64 25 12 22 11
 
+Choose Operation:
 1. Bubble Sort
 2. Selection Sort
 3. Insertion Sort
