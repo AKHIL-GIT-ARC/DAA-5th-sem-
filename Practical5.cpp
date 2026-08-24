@@ -4,22 +4,19 @@ using namespace std;
 #define MAX 100
 
 /*=========================================================
-    0/1 Knapsack using Dynamic Programming
+    0/1 Knapsack Problem
 
     How it works:
-    1. Consider each item one by one.
-    2. For every capacity, check two choices:
-       - Do not take the current item.
-       - Take the current item if it fits.
-    3. Store the maximum value in a DP table.
-    4. The final answer is stored in dp[n][capacity].
+    For every item, we have two choices:
+    1. Do not include the item.
+    2. Include the item if it fits.
+
+    The DP table stores the maximum profit possible
+    for each number of items and each capacity.
 
     Idea:
-    Maximize the total value of selected items without
-    exceeding the given bag capacity.
-
-    Note:
-    Each item can be taken only once (0/1).
+    Divide the problem into smaller problems and store
+    their results to avoid repeated calculations.
 
     Time Complexity:
     Best Case    : O(n * W)
@@ -29,59 +26,70 @@ using namespace std;
     Space Complexity:
     O(n * W)
 
+    Where:
     n = Number of items
     W = Knapsack capacity
 =========================================================*/
 
-int knapsack(int weight[], int value[], int n, int capacity)
+int maximum(int a, int b)
+{
+    return (a > b) ? a : b;
+}
+
+
+// Knapsack Function
+int knapsack(int wt[], int profit[], int n, int W)
 {
     int dp[MAX][MAX] = {0};
 
     for(int i = 1; i <= n; i++)
     {
-        for(int w = 1; w <= capacity; w++)
+        for(int w = 1; w <= W; w++)
         {
-            // Item does not fit
-            if(weight[i - 1] > w)
-                dp[i][w] = dp[i - 1][w];
-
-            // Item fits: choose maximum of take and don't take
-            else
-                dp[i][w] = max(
-                    dp[i - 1][w],
-                    value[i - 1] + dp[i - 1][w - weight[i - 1]]
+            if(wt[i - 1] <= w)
+            {
+                // Take the item or leave it
+                dp[i][w] = maximum(
+                    profit[i - 1] + dp[i - 1][w - wt[i - 1]],
+                    dp[i - 1][w]
                 );
+            }
+            else
+            {
+                // Item does not fit
+                dp[i][w] = dp[i - 1][w];
+            }
         }
     }
 
-    return dp[n][capacity];
+    return dp[n][W];
 }
 
 int main()
 {
-    int weight[MAX], value[MAX];
-    int n, capacity, i, ans;
+    int wt[MAX], profit[MAX];
+    int n, W;
 
     cout << "Enter number of items: ";
     cin >> n;
 
     cout << "Enter weights:\n";
-    for(i = 0; i < n; i++)
-        cin >> weight[i];
+    for(int i = 0; i < n; i++)
+        cin >> wt[i];
 
-    cout << "Enter values:\n";
-    for(i = 0; i < n; i++)
-        cin >> value[i];
+    cout << "Enter profits:\n";
+    for(int i = 0; i < n; i++)
+        cin >> profit[i];
 
     cout << "Enter knapsack capacity: ";
-    cin >> capacity;
+    cin >> W;
 
-    ans = knapsack(weight, value, n, capacity);
-
-    cout << "\nMaximum Profit = " << ans;
+    cout << "\nMaximum Profit = "
+         << knapsack(wt, profit, n, W);
 
     return 0;
 }
+
 
 /*
 ====================== SAMPLE OUTPUT ======================
@@ -91,7 +99,7 @@ Enter number of items: 4
 Enter weights:
 2 1 3 2
 
-Enter values:
+Enter profits:
 12 10 20 15
 
 Enter knapsack capacity: 5
@@ -102,22 +110,22 @@ Maximum Profit = 37
 
 WORKING:
 
-Items:
-Weight:  2  1  3  2
-Value:  12 10 20 15
+Item     Weight     Profit
+  1        2          12
+  2        1          10
+  3        3          20
+  4        2          15
 
 Capacity = 5
 
-Best selection:
+Selected Items:
 Item 1 + Item 2 + Item 4
 
 Total Weight:
 2 + 1 + 2 = 5
 
-Total Value:
+Total Profit:
 12 + 10 + 15 = 37
-
-Therefore:
 
 Maximum Profit = 37
 
